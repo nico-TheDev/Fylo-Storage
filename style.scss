@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+$gradient: hsl(6, 100%, 80%), hsl(335, 100%, 65%);
+$PaleBlue: hsl(243, 100%, 93%);
+$GrayishBlue: hsl(229, 7%, 55%);
+$DarkBlue: hsl(228, 56%, 26%);
+$VeryDarkBlue: hsl(229, 57%, 11%);
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+    line-height: 1.3;
+    font-size: 14px;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    min-height: 100vh;
+    color: white;
+    background-color: $VeryDarkBlue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg {
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+
+    &-mobile {
+        display: none;
+
+        @media only screen and (max-width: 800px) {
+            display: block;
+            height: 100vh;
+        }
+    }
+
+    &-desktop {
+        @media only screen and (max-width: 800px) {
+            display: none;
+        }
+    }
+}
+
+.main {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+
+    @media only screen and (max-width: 800px) {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+
+    & > * {
+        background-color: $DarkBlue;
+    }
+
+    &__left {
+        border-radius: 18px;
+        border-top-right-radius: 100px;
+        padding: 3rem;
+    }
+
+    &__cover {
+        width: 80%;
+        display: grid;
+        row-gap: 2rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &__logo {
+        grid-column: 1/-1;
+    }
+
+    &__icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        background-color: $VeryDarkBlue;
+    }
+
+    &__right {
+        height: 80%;
+        align-self: end;
+        padding: 2rem;
+        border-radius: 18px;
+        position: relative;
+
+        @media only screen and (max-width:800px){
+            height: 150px;
+        }
+    }
+
+    &__memory {
+        position: absolute;
+        top: -40px;
+        right: 2rem;
+        background-color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 18px;
+        border-bottom-right-radius: 0;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        color: $GrayishBlue;
+        text-transform: uppercase;
+
+        @media only screen and (max-width: 800px) {
+            border-radius: 15px;
+            top: 0;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%,152%);
+            height: 70px;
+            width: 55%;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        span {
+            color: black;
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+        &::before {
+            box-sizing: content-box;
+            content: "";
+            display: block;
+            border-top: 30px white solid;
+            border-left: 30px solid transparent;
+            border-right: 30px white transparent;
+            position: absolute;
+            right: 0;
+            bottom: -25px;
+
+            @media only screen and (max-width: 800px) {
+                display: none;
+            }
+        }
+    }
+
+    &__bar {
+        border-radius: 20px;
+        height: 18px;
+        background-color: $VeryDarkBlue;
+        padding: 2px 4px;
+        position: relative;
+        margin-bottom: 0.4rem;
+        &::before {
+            content: "";
+            width: 80%;
+            height: 100%;
+            display: block;
+            border-radius: 20px;
+            background-image: linear-gradient(to right, $gradient);
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: calc(78% + 4px);
+            transform: translateX(-77%);
+        }
+    }
+
+    &__measure {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__info {
+        color: $PaleBlue;
+        margin-bottom: 1rem;
+        span {
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
